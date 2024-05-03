@@ -1,19 +1,18 @@
-import { getDatabase, ref, set } from "firebase/database";
-import { app } from "./firebase";
-const db = getDatabase(app);
+import "./App.css";
+import SignUp from "./pages/SignUp";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Signin from "./pages/Signin";
+import Home from "./pages/Home";
 function App() {
-  const putData = () => {
-    set(ref(db, "users/aman"), {
-      id: 1,
-      name: "aman",
-      age: 23,
-    });
-  };
-
   return (
-    <div className="App">
-      <h1>Firebase React App</h1>
-      <button onClick={putData}>Put Data</button>
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<Signin />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
